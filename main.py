@@ -61,6 +61,7 @@ bot = Client("bot",
 
 
 @bot.on_message(filters.command(["aditya"]))
+    async def (bot: Client, m: Message):
                         
 
 
