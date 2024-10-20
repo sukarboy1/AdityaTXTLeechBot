@@ -61,9 +61,11 @@ bot = Client("bot",
 
 
 @bot.on_message(filters.command(["aditya"]))
+                        
+async def start(bot: Client, m: Message):
 
 
- editable = await m.reply_text("**Hi Press**\n**Text** = /pro_txt\n**Top** = /pro_top\n**Vision** = /pro_vision\n**Jw** = /pro_jw\n**Olive** = /pro_olive\n**Addapdf** = /adda_pdf")
+await m.reply_text("**Hi Press**\n**Text** = /pro_txt\n**Top** = /pro_top\n**Vision** = /pro_vision\n**Jw** = /pro_jw\n**Olive** = /pro_olive\n**Addapdf** = /adda_pdf")
 
 
 @bot.on_message(filters.command(["cancel"]))
