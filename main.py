@@ -60,46 +60,36 @@ bot = Client("bot",
              api_hash=os.environ.get("6998f2c585fdce65ac72dfa23d02b6ec")
 
 
-@bot.on_message(filters.command(["aditya"]))
-    async def (bot: Client, m: Message):
-                        
+@bot.on_message(filters.command(["start"]))
+async def start(bot: Client, m: Message):
+    await m.reply_text(f"<b>Hello {m.from_user.mention} 👋\n\n I Am A Bot For Download Links From Your **.TXT** File And Then Upload That File On Telegram So Basically If You Want To Use Me First Send Me /run Command And Then Follow Few Steps..\n Extracted By ➤ 🅹🅰🅸 🆂🅷🆁🅸 🆁🅰🅼 \n\nUse /stop to stop any ongoing task.</b>")
 
 
-
-await m.reply_text("f"<b>Hello {m.from_user.mention} 👋\n\n I Am A Bot For Download Links From Your **.TXT** File And Then Upload That File On Telegram So Basically If You Want To Use Me First Send Me /run Command And Then Follow Few Steps..\n Extracted By ➤ 🅹🅰🅸 🆂🅷🆁🅸 🆁🅰🅼 \n\nUse /stop to stop any ongoing task.</b>")
-
-
-@bot.on_message(filters.command(["cancel"]))
-async def cancel(_, m):
-    editable = await m.reply_text("Canceling All process Plz wait\n🚦🚦 Last Process Stopped 🚦🚦")
-    global cancel
-    cancel = True
-    await editable.edit("cancled")
-    return
-
-
-@bot.on_message(filters.command("restart"))
+@bot.on_message(filters.command("stop"))
 async def restart_handler(_, m):
-    await m.reply_text("Restarted!", True)
+    await m.reply_text("**Stopped Boss **🚦", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
-    else:
-        editable = await m.reply_text(
-            "Hello Bro **I am Text Downloader Bot and made by Aditya**. I can download videos from **text** file one by one.**\n\nDeveloper** : Aditya**\nLanguage** : Python**\nFramework** : Pyrogram\n\nSend **TXT** File FORMAT {FileName : FileLink}")
+
+
+
+@bot.on_message(filters.command(["run"]))
+async def upload(bot: Client, m: Message):
+    editable = await m.reply_text('𝕤ᴇɴᴅ ᴛxᴛ ғɪʟᴇ 🅹🅰🅸 🆂🅷🆁🅸 🆁🅰🅼 ⚡️')
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
-    logging.info(2333)
+
     path = f"./downloads/{m.chat.id}"
 
     try:
-        with open(x, "r") as f:
-            content = f.read()
-        content = content.split("\n")
-        links = []
-        for i in content:
-            links.append(i.split(":",1)) 
-        os.remove(x)
-        # print(len(links))
+       with open(x, "r") as f:
+           content = f.read()
+       content = content.split("\n")
+       links = []
+       for i in content:
+           links.append(i.split("://", 1))
+       os.remove(x)
+            # print(len(links)
     except:
         await m.reply_text("Invalid file input.")
         os.remove(x)
