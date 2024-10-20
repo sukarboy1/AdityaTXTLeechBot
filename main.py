@@ -61,7 +61,7 @@ bot = Client("bot",
 
 
 @bot.on_message(filters.command(["aditya"]))
-async def account_login(bot: Client, m: Message):
+
 
  editable = await m.reply_text("**Hi Press**\n**Text** = /pro_txt\n**Top** = /pro_top\n**Vision** = /pro_vision\n**Jw** = /pro_jw\n**Olive** = /pro_olive\n**Addapdf** = /adda_pdf")
 
@@ -79,14 +79,6 @@ async def cancel(_, m):
 async def restart_handler(_, m):
     await m.reply_text("Restarted!", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
-
-
-@bot.on_message(filters.command(["pro_txt"]))
-async def account_login(bot: Client, m: Message):
-    user = m.from_user.id if m.from_user is not None else None
-    if user is not None and user not in sudo_users:
-        await m.reply("**Please buy this bot", quote=True)
-        return
     else:
         editable = await m.reply_text(
             "Hello Bro **I am Text Downloader Bot and made by Aditya**. I can download videos from **text** file one by one.**\n\nDeveloper** : Aditya**\nLanguage** : Python**\nFramework** : Pyrogram\n\nSend **TXT** File FORMAT {FileName : FileLink}")
