@@ -994,7 +994,9 @@ async def account_login(bot: Client, m: Message):
             cc = f'**Title »** {name1}.mp4\n**Caption »** {raw_text5}\n**Index »** {str(count).zfill(3)}'
             
             cmd = f'yt-dlp -o "{name}.mp4" --cookies {cook} "{url}"'
-            try:download_cmd = f'{cmd} -R 25 --fragment-retries 25 --external-downloader aria2c --downloader-args "aria2c: -x 16 -j 32"
+            try:
+                download_cmd = f'{cmd} -R 25 --fragment-retries 25 --external-downloader aria2c --downloader-args "aria2c: -x 16 -j 32" --cookies cookies.txt'
+    global failed_counter
                 os.system(download_cmd)
                 filename = f"{name}.mp4"
                 subprocess.run(f'ffmpeg -i "{filename}" -ss 00:01:00 -vframes 1 "{filename}.jpg"', shell=True)
